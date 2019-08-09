@@ -1,0 +1,63 @@
+#title, #clearButton{
+    display: inline-block;
+}
+
+#header{
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    background-color: #DA4D4D;
+    box-shadow: 5px 10px  #888888;
+}
+
+h1, #clearButton{
+    font-family: 'Blinker', sans-serif;
+}
+
+h1{
+    color: white;
+    margin-left: 10px;
+    font-weight: bolder;
+}
+
+#clearButton{
+    font-size: 16pt; font-weight: bold;
+    position: absolute;
+    right:0; top: 0;
+    margin-right: 10px; margin-top: 30px;
+    border-radius: 4px;
+}
+
+#content{
+    display:block;
+    margin-top: 100px;
+}
+
+#board-container{
+    display:block;
+    width: 960px;
+    height: 960px;
+    padding:0;
+}
+
+.board-row{
+    display:block;
+    margin-top:0;
+    margin-bottom: 0;
+    padding:0;
+    height:auto;
+    width: 1000px;
+}
+
+.board-cell{
+    display: inline-block;
+    height:20px;
+    width:20px;
+    border: 1px solid;
+    margin:0;
+}
+
+.drawn-on{
+    background-color: grey;
+}
