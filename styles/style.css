@@ -30,8 +30,10 @@ h1{
 }
 
 #content{
-    display:block;
+    display: block;
     margin-top: 100px;
+    width: auto;
+    height: auto;
 }
 
 #board-container{
@@ -47,15 +49,14 @@ h1{
     margin-bottom: 0;
     padding:0;
     height:auto;
-    width: 1000px;
+    width: auto;
 }
 
 .board-cell{
     display: inline-block;
-    height:20px;
-    width:20px;
-    border: 1px solid;
+    /*border: 1px solid;*/
     margin:0;
+    padding:0;
 }
 
 .drawn-on{

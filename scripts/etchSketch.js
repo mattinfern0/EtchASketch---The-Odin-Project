@@ -1,25 +1,29 @@
 function toPixelStr(num){
-    return num.toString() + "px";
+    var result = num.toString() + "px";
+    return result;
 }
 
 function createBoard(rows, cols){
     var boardContainer = document.getElementById("board-container");
-    //console.log("container width: " + boardContainer.style.width);
-    var cellWidth = (boardContainer.clientWidth / rows);
-    var cellHeight = (boardContainer.clientHeight / cols);
-    console.log("cellWidth: " + cellWidth + " cellHeight: " + cellHeight);
+    var CELLBORDERPX = 1;
+    var cellWidth = ((boardContainer.offsetWidth) / cols) - (2 * CELLBORDERPX);
+    var cellHeight = ((boardContainer.offsetHeight) / rows) - (2 * CELLBORDERPX);
     for (var r = 0; r < rows; r++){
         var row = document.createElement("div");
         row.className = "board-row";
         row.style.height = toPixelStr(cellHeight);
-        row.style.width = toPixelStr((cellWidth * cols) + 100);
+        row.style.width = toPixelStr((cellWidth * cols)) + (2 * CELLBORDERPX);
         for (var c = 0; c < cols; c++){
             var cell = document.createElement("div");
             cell.className = "board-cell";
-            //cell.innerText = "R" + r.toString() + "-C" + c.toString();
+
             cell.addEventListener("mouseover", fillBlock);
             cell.style.height = toPixelStr(cellHeight);
             cell.style.width = toPixelStr(cellWidth);
+            cell.style.borderWidth = toPixelStr(CELLBORDERPX);
+            cell.style.borderStyle = "solid";
+            cell.style.borderColor = "black";
+
             row.appendChild(cell);
         }
         boardContainer.appendChild(row);
@@ -41,9 +45,8 @@ function fillBlock(e){
 
 function onClear(){
     removeBoard();
-    var newHeight = prompt("Enter new board height");
-    var newWidth = prompt("Enter new board width");
-    createBoard(newHeight, newWidth);
+    var newDimension = prompt("Enter new size for square");
+    createBoard(newDimension, newDimension);
 }
 
 function setupButtons(){
