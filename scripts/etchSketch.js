@@ -1,19 +1,30 @@
+// Need to eventually learn how to avoid global variables
+var currentBoard = {
+    rows: 16,
+    cols: 16,
+    resize: function(newRows, newCols){
+        this.rows = newRows;
+        this.cols = newCols;
+    }
+};
+
 function toPixelStr(num){
     var result = num.toString() + "px";
     return result;
 }
 
-function createBoard(rows, cols){
-    var boardContainer = document.getElementById("board-container");
+function createBoardDisplay(){
     var CELLBORDERPX = 1;
-    var cellWidth = ((boardContainer.offsetWidth) / cols) - (2 * CELLBORDERPX);
-    var cellHeight = ((boardContainer.offsetHeight) / rows) - (2 * CELLBORDERPX);
-    for (var r = 0; r < rows; r++){
+    
+    var boardContainer = document.getElementById("board-container");
+    var cellWidth = ((boardContainer.offsetWidth) / currentBoard.cols) - (2 * CELLBORDERPX);
+    var cellHeight = ((boardContainer.offsetHeight) / currentBoard.rows) - (2 * CELLBORDERPX);
+    for (var r = 0; r <currentBoard.rows; r++){
         var row = document.createElement("div");
         row.className = "board-row";
         row.style.height = toPixelStr(cellHeight);
-        row.style.width = toPixelStr((cellWidth * cols)) + (2 * CELLBORDERPX);
-        for (var c = 0; c < cols; c++){
+        row.style.width = toPixelStr((cellWidth * currentBoard.cols)) + (2 * CELLBORDERPX);
+        for (var c = 0; c < currentBoard.cols; c++){
             var cell = document.createElement("div");
             cell.className = "board-cell";
 
@@ -45,20 +56,27 @@ function fillBlock(e){
 
 function onClear(){
     removeBoard();
-    var newDimension = prompt("Enter new size for square");
-    createBoard(newDimension, newDimension);
+    createBoardDisplay();
+}
+
+function onResize(){
+    removeBoard();
+    var newDimension = prompt("Enter new size for board square (ex: 16 for 16x16 board)");
+    currentBoard.resize(newDimension, newDimension);
+    createBoardDisplay();
 }
 
 function setupButtons(){
-    var clearButton = document.getElementById("clearButton");
+    var clearButton = document.getElementById("clear-button");
     clearButton.addEventListener('click', onClear)
+
+    var resizeButton = document.getElementById("resize-button");
+    resizeButton.addEventListener('click', onResize);
 }
 
 function setup(){
-    createBoard(16, 16);
+    createBoardDisplay();
     setupButtons();
 }
-
-
 
 setup();

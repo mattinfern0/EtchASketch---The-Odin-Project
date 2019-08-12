@@ -21,12 +21,18 @@ h1{
     font-weight: bolder;
 }
 
-#clearButton{
-    font-size: 16pt; font-weight: bold;
+#top-right{
     position: absolute;
     right:0; top: 0;
     margin-right: 10px; margin-top: 30px;
+    display:block;
+}
+
+#top-right button{
+    font-size: 16pt; font-weight: bold;
     border-radius: 4px;
+    display: inline-block;
+    width: auto;
 }
 
 #content{
